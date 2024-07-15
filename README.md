@@ -11,13 +11,14 @@ Output: distance (z)
 To train and test the models, execute the following from `distance-estimator` directory, unless mentioned otherwise
 
 ### Training
-1. (Optional) Use `hyperopti.py` for hyperparameter optimization. Choose the hyperparameters you would like to try out. (Default model inside hyperopti trains on two gpus, change it if you want.) More info on hyperoptimization [here](https://github.com/maxpumperla/hyperas)
-2. You can use result of 1. and edit `train.py` accordingly. Otherwise, use `train.py` to define your own model, choose hyperparameters, and start training!
+```
+python train.py 
+```
 
 ### Inference
 1. Use `inference.py` to generate predictions for the test set.
 ```
-python inference.py --modelname=generated_files/model@1535470106.json --weights=generated_files/model@1535470106.h5
+python inference.py 
 ```
 2. Use `prediction-visualizer.py` to visualize the predictions.
 ```
@@ -87,14 +88,14 @@ Values    Name      Description
 ```
 
 3. **Generate dataset for distance estimation**<br/>
-Using only `annotations.csv` (file generated using `train_annots`), split the dataset into `train.csv` and `test.csv` set.
+Using only `annotations.csv` (file generated using `train_annots`)
 
 ```shell
 python generate-depth-annotations.py
 ```
 
 This dataset contains the following information:
-`filename, xmin, ymin, xmax, ymax, angle, xloc, yloc, zloc`
+`filename, xmin, ymin, xmax, ymax, distance`
 
 Organize your data as follows
 ```
@@ -113,14 +114,11 @@ KITTI-distance-estimation
 Use `visualizer.py` to visualize and debug your dataset. Edit `visualizer.py` as you want to visualize whatever data you want.
 
 ### Training
-1. Use `hyperopti.py` for hyperparameter optimization. Choose the hyperparameters you would like to try out. More info on hyperoptimization [here](https://github.com/maxpumperla/hyperas)
-2. Use result of 1. and edit `train.py` accordingly. Use `train.py` to actually train your model
-3. Use `inference.py` to generate predictions for the test set.
-4. Use `prediction-visualizer.py` to visualize the predictions.
+1. Use `train.py` to actually train your model
+2. Use `inference.py` to generate predictions for the test set.
 
-### TODO
-1. Save models in `hyperopti.py` so train.py wont be necessary (waiting on hyperas issue)
-2. Handle num_gpus (cannot access global variables inside create_model)
+Note that should download weight yolov8m for object detection to run `inference.py` to folder 'yolov8/runs/detect/detect-v8m/weights/' from (https://drive.google.com/file/d/1KYMlWYtUI-anZWopvSds4-66mV7nNSy4/view?usp=sharing)
+
 
 ### Acknowledgements
 [KITTI Vision Benchmark Suite](http://www.cvlibs.net/datasets/kitti/)

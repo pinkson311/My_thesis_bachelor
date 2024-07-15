@@ -1,0 +1,8 @@
+train: C:/Users/Admin/Desktop/DATN/dataset/images/train # path to training labels
+val: C:/Users/Admin/Desktop/DATN/dataset/images/val  # path to validation labels
+
+# number of classes
+nc: 8
+
+# class names
+names: ['Car', 'Van', 'Truck', 'Pedestrian', 'Person_sitting', 'Cyclist', 'Tram', 'Misc']
